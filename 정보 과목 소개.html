@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정보 - AI 기초 | 강원사대부고 과목설명회</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Pretendard:wght@300;400;500;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --accent: #8b5cf6;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Outfit', sans-serif;
+            background-color: var(--dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('예시 이미지.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.5;
+            z-index: -2;
+        }
+
+        /* Decorative Background Blob */
+        .blob {
+            position: absolute;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+            animation: moveBlob 10s infinite alternate;
+        }
+
+        .blob-1 {
+            top: -100px;
+            left: -100px;
+            width: 500px;
+            height: 500px;
+        }
+
+        .blob-2 {
+            bottom: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--primary) 100%);
+        }
+
+        .blob-3 {
+            top: 40%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(180deg, var(--secondary) 0%, var(--warning) 100%);
+            opacity: 0.3;
+        }
+
+        @keyframes moveBlob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(20px, 20px) scale(1.1);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+            position: relative;
+            padding: 4rem 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(to right, #6366f1, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.35rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .hero-info {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Glass Cards */
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 24px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        /* Timeline / Revolution Section */
+        .revolution-card {
+            text-align: center;
+            border-top: 4px solid var(--glass-border);
+        }
+
+        .revolution-card.active {
+            border-color: var(--secondary);
+            background: linear-gradient(180deg, rgba(236, 72, 153, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+        }
+
+        .rev-year {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .rev-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        /* Company Table */
+        .rank-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .rank-table th {
+            text-align: left;
+            padding: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .rank-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .rank-number {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .rank-name.it {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        /* Strategy Box */
+        .strategy-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            padding: 3rem;
+            border-radius: 30px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .strategy-highlight {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 1rem 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Persona Cards */
+        .persona-card {
+            text-align: center;
+        }
+
+        .persona-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Student Record Examples */
+        .example-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .example-title {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Trend Ticker */
+        .trend-ticker {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-radius: 12px;
+            margin-bottom: 4rem;
+        }
+
+        .trend-label {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.2rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .grid-2,
+            .grid-3,
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Elements -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="container">
+
+        <header>
+            <div class="logo">
+                <span>강원사대부고</span> 정보 - AI 기초
+            </div>
+            <div style="font-size: 0.9rem; color: var(--text-muted);">
+                정보 교사 <strong>박상현</strong>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero" style="border: none;">
+            <div class="badge">2025학년도 과목설명회</div>
+            <h1>
+                미래를 읽는<br>
+                <span class="highlight">새로운 언어, 정보</span>
+            </h1>
+            <p>
+                단순한 코딩이 아닙니다. 나의 생각과 세계를<br>
+                가장 논리적이고 창의적인 방법으로 표현하는 도구입니다.
+            </p>
+            <div class="hero-info">
+                <span>📅 2025.07.15</span>
+                <span>🎓 2022 개정 교육과정</span>
+                <span>🏫 강원대사범대학부설고등학교</span>
+            </div>
+        </section>
+
+        <!-- 1. The World Has Changed -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">우리 사회의 변화</h2>
+                <p class="section-desc">18세기 증기기관에서 시작된 혁명은 이제 '지능정보기술'로 진화했습니다.</p>
+            </div>
+            <div class="grid-4">
+                <div class="card revolution-card">
+                    <span class="rev-year">18세기</span>
+                    <h3 class="rev-title">1차 산업혁명</h3>
+                    <p>증기 기관 기반<br>"기계화" 혁명</p>
+                </div>
+                <div class="card revolution-card">
+                    <span class="rev-year">19~20세기 초</span>
+                    <h3 class="rev-title">2차 산업혁명</h3>
+                    <p>전기에너지 기반<br>"대량생산" 혁명</p>
+                </div>
+                <div class="card revolution-card">
+                    <span class="rev-year">20세기 후반</span>
+                    <h3 class="rev-title">3차 산업혁명</h3>
+                    <p>컴퓨터, 인터넷 기반<br>"지식정보" 혁명</p>
+                </div>
+                <div class="card revolution-card active">
+                    <span class="rev-year">21세기 초반~</span>
+                    <h3 class="rev-title">4차 산업혁명</h3>
+                    <p><strong>AI + IoT + BigData</strong><br>"지능정보기술" 혁명</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Motivation (Why IT?) -->
+        <section>
+            <div class="grid-2">
+                <div>
+                    <h2 class="section-title">글로벌 리더는<br><span style="color:var(--success)">IT 기업</span>입니다.</h2>
+                    <p style="margin-bottom: 2rem; color: var(--text-muted);">
+                        전 세계 시가총액 Top 10 기업 중 대부분이 IT 기술을 기반으로 하고 있습니다.
+                        우리가 매일 쓰는 유튜브, 인스타, 카톡... IT 기술 없이 단 하루라도 살 수 있나요?
+                    </p>
+                    <div class="trend-ticker">
+                        <span class="trend-label">2025 TREND</span>
+                        <span>생성형 AI(Generative AI) 교육 도입 확산 • 개인 맞춤형 학습 • AI 윤리</span>
+                    </div>
+                    <div class="card" style="border-left: 4px solid var(--primary);">
+                        <h3 style="font-size: 1.2rem;">🚀 정부 & 대학의 전폭적 지원</h3>
+                        <ul style="list-style: none; margin-top: 1rem; color: var(--text-muted); font-size: 0.95rem;">
+                            <li style="margin-bottom: 0.5rem">✅ 정부: 5년간/ 5630억 투입, SW인재 20만명 양성</li>
+                            <li>✅ 대학: 전국 58개 SW 중심대학 (강원대, 연세대, 고려대 등)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 1.5rem; text-align: center;">🌍 전세계 기업 시총 Top 5</h3>
+                    <table class="rank-table">
+                        <tr>
+                            <th>순위</th>
+                            <th>기업</th>
+                            <th>분야</th>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-number">1</span></td>
+                            <td class="rank-name it">Nvidia (엔비디아)</td>
+                            <td>AI 반도체</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-number">2</span></td>
+                            <td class="rank-name it">MS (마이크로소프트)</td>
+                            <td>SW/Cloud</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-number">3</span></td>
+                            <td class="rank-name it">Apple (애플)</td>
+                            <td>H/W, Platform</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-number">4</span></td>
+                            <td class="rank-name it">Amazon (아마존)</td>
+                            <td>Cloud/Commerce</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-number">5</span></td>
+                            <td class="rank-name it">Google (구글)</td>
+                            <td>Search/AI</td>
+                        </tr>
+                    </table>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                        *2025.07 기준 데이터 기반</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. What We Learn -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">정보 - AI 기초에서 뭘 배우나요?</h2>
+                <p class="section-desc">내 생각과 내 세계를 밖으로 표현하는 방법을 배웁니다.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card persona-card">
+                    <div class="persona-icon">💻</div>
+                    <h3>컴퓨터 & 데이터</h3>
+                    <p>데이터 수집과 시각화,<br>컴퓨터 작동 원리 이해</p>
+                </div>
+                <div class="card persona-card">
+                    <div class="persona-icon">🔣</div>
+                    <h3>프로그래밍</h3>
+                    <p>나의 아이디어를 구현하는<br>논리적 도구 (Python 등)</p>
+                </div>
+                <div class="card persona-card">
+                    <div class="persona-icon">🧠</div>
+                    <h3>인공지능 (AI)</h3>
+                    <p>AI 모델의 원리 이해 및<br>직접 모델 만들어보기</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Who Needed & Grading -->
+        <section>
+            <div class="grid-2">
+                <div>
+                    <h2 class="section-title">누가 선택해야 할까요?</h2>
+                    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
+                        <div class="card" style="padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem;">
+                            <span style="font-size: 2rem;">😅</span>
+                            <div>
+                                <h4 style="color: var(--light); margin-bottom: 0.3rem;">"저 컴맹인데요..."</h4>
+                                <span style="font-size: 0.9rem; color: var(--text-muted);">기초부터 차근차근! 디지털 리터러시를
+                                    키웁니다.</span>
+                            </div>
+                        </div>
+                        <div class="card" style="padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem;">
+                            <span style="font-size: 2rem;">🧐</span>
+                            <div>
+                                <h4 style="color: var(--light); margin-bottom: 0.3rem;">"논리적인 게 좋아요!"</h4>
+                                <span style="font-size: 0.9rem; color: var(--text-muted);">세상을 논리적(대문자 T)으로 분석하고 싶은
+                                    학생.</span>
+                            </div>
+                        </div>
+                        <div class="card" style="padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem;">
+                            <span style="font-size: 2rem;">🤖</span>
+                            <div>
+                                <h4 style="color: var(--light); margin-bottom: 0.3rem;">"AI 만들어보고 싶어요"</h4>
+                                <span style="font-size: 0.9rem; color: var(--text-muted);">내 손으로 직접 인공지능을 구현해보고 싶은
+                                    학생.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="section-title">성적은 어떻게?</h2>
+                    <div class="strategy-box">
+                        <p style="color: var(--light); font-size: 1.1rem;">정보와 인공지능 기초는<br>누구도 먼저 배우지 않았습니다.</p>
+                        <div class="strategy-highlight">
+                            "나도 여기서 1등급을 받을 수 있다!"
+                        </div>
+                        <p style="color: var(--text-muted);">수업에 열심히 참여한다면,<br>투자한 만큼 성적으로 돌아오는 과목입니다.</p>
+                        <div
+                            style="margin-top: 2rem; display: inline-block; padding: 0.5rem 1.5rem; background: rgba(255,255,255,0.1); border-radius: 20px;">
+                            ⭐ Blue Ocean 전략
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Student Record (Vision) -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">나만의 강력한 무기,<br>생활기록부</h2>
+                <p class="section-desc">여러분의 관심사(진로)와 프로그래밍을 연결하여 차별화된 결과물을 만듭니다.</p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3>🏥 보건/의료 계열 학생 예시</h3>
+                    <div class="example-box">
+                        <span class="example-title">🩸 헌혈 참여도 분석 프로젝트</span>
+                        <p style="font-size: 0.95rem;">'왜 또래의 헌혈 참여가 낮을까?'라는 의문에서 시작 → 공공데이터포털(Kosis) 데이터 확보 → 파이썬으로 연령별
+                            헌혈 현황 <strong>시각화(막대그래프)</strong> → 인식 개선 캠페인 제안</p>
+                    </div>
+                    <div class="example-box" style="border-color: var(--primary);">
+                        <span class="example-title">🦷 치아 건강 AI 진단 서비스</span>
+                        <p style="font-size: 0.95rem;">충치 데이터 학습 → 이미지 분류 AI 모델 제작 → 사용자 치아 사진을 분석해 충치 위험도 알림 서비스 기획</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>📉 경제/경영 계열 학생 예시</h3>
+                    <div class="example-box" style="border-color: var(--warning);">
+                        <span class="example-title">📊 산업별 소득 수준 시각화</span>
+                        <p style="font-size: 0.95rem;">한국소비자원 데이터 수집 → 불필요한 데이터 전처리(불순물 제거) → <strong>트리맵(Tree
+                                Map)</strong>으로 산업별 소득 한눈에 파악 → 격차 문제 해결책 탐구</p>
+                    </div>
+                    <div class="example-box" style="border-color: var(--success);">
+                        <span class="example-title">😴 수면 질 예측 AI 모델</span>
+                        <p style="font-size: 0.95rem;">수면 데이터 분석 → 선형 회귀보다 효과적인 <strong>Tree 모델</strong> 선택 (R2값 0.858
+                            달성) → 수면 부족 문제 해결을 위한 과학적 접근</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem;">
+                <p style="font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem;">
+                    "선생님이 옆에서 최선을 다해 도울 것입니다."
+                </p>
+                <a href="#"
+                    style="background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(99, 102, 241, 0.4);">
+                    수강 신청하러 가기 →
+                </a>
+            </div>
+        </section>
+
+        <footer
+            style="text-align: center; padding: 4rem 0; color: var(--text-muted); border-top: 1px solid var(--glass-border);">
+            <p>© 2025 강원사대부고 정보과 | 문의: 033-XXX-XXXX</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem;">Designed based on 2025 Education Curriculum & IT Trends
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
