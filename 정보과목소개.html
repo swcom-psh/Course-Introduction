@@ -40,20 +40,7 @@
             position: relative;
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('예시 이미지.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.5;
-            z-index: -2;
-        }
+        /* Background image removed as requested */
 
         /* Decorative Background Blob */
         .blob {
@@ -407,6 +394,66 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 0;
+                min-height: auto;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                margin: 0 auto 2rem;
+            }
+
+            .hero-info {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .trend-ticker {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .strategy-box {
+                padding: 1.5rem;
+            }
+
+            .rank-table {
+                font-size: 0.85rem;
+            }
+
+            .rank-table th,
+            .rank-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 
@@ -499,38 +546,40 @@
                 </div>
                 <div class="card">
                     <h3 style="margin-bottom: 1.5rem; text-align: center;">🌍 전세계 기업 시총 Top 5</h3>
-                    <table class="rank-table">
-                        <tr>
-                            <th>순위</th>
-                            <th>기업</th>
-                            <th>분야</th>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-number">1</span></td>
-                            <td class="rank-name it">Nvidia (엔비디아)</td>
-                            <td>AI 반도체</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-number">2</span></td>
-                            <td class="rank-name it">MS (마이크로소프트)</td>
-                            <td>SW/Cloud</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-number">3</span></td>
-                            <td class="rank-name it">Apple (애플)</td>
-                            <td>H/W, Platform</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-number">4</span></td>
-                            <td class="rank-name it">Amazon (아마존)</td>
-                            <td>Cloud/Commerce</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-number">5</span></td>
-                            <td class="rank-name it">Google (구글)</td>
-                            <td>Search/AI</td>
-                        </tr>
-                    </table>
+                    <div style="overflow-x: auto;">
+                        <table class="rank-table">
+                            <tr>
+                                <th>순위</th>
+                                <th>기업</th>
+                                <th>분야</th>
+                            </tr>
+                            <tr>
+                                <td><span class="rank-number">1</span></td>
+                                <td class="rank-name it">Nvidia (엔비디아)</td>
+                                <td>AI 반도체</td>
+                            </tr>
+                            <tr>
+                                <td><span class="rank-number">2</span></td>
+                                <td class="rank-name it">MS (마이크로소프트)</td>
+                                <td>SW/Cloud</td>
+                            </tr>
+                            <tr>
+                                <td><span class="rank-number">3</span></td>
+                                <td class="rank-name it">Apple (애플)</td>
+                                <td>H/W, Platform</td>
+                            </tr>
+                            <tr>
+                                <td><span class="rank-number">4</span></td>
+                                <td class="rank-name it">Amazon (아마존)</td>
+                                <td>Cloud/Commerce</td>
+                            </tr>
+                            <tr>
+                                <td><span class="rank-number">5</span></td>
+                                <td class="rank-name it">Google (구글)</td>
+                                <td>Search/AI</td>
+                            </tr>
+                        </table>
+                    </div>
                     <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
                         *2025.07 기준 데이터 기반</p>
                 </div>
