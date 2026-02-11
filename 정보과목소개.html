@@ -383,9 +383,17 @@
             font-size: 0.85rem;
         }
 
+        /* Image Safety */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
         @media (max-width: 900px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 3.5rem;
+                /* Fallback */
+                font-size: clamp(2.5rem, 5vw + 1rem, 4rem);
             }
 
             .grid-2,
@@ -393,11 +401,22 @@
             .grid-4 {
                 grid-template-columns: 1fr;
             }
+
+            /* Adjust blobs for tablets */
+            .blob-1 {
+                width: 400px;
+                height: 400px;
+            }
+
+            .blob-2 {
+                width: 300px;
+                height: 300px;
+            }
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 0 1.5rem;
+                padding: 0 1.25rem;
             }
 
             .hero {
@@ -408,11 +427,16 @@
 
             .hero h1 {
                 font-size: 2.5rem;
+                /* Fallback */
+                font-size: clamp(2rem, 8vw, 3rem);
+                word-break: keep-all;
+                /* Prevent awkward breaks in Korean */
             }
 
             .hero p {
                 font-size: 1.1rem;
                 margin: 0 auto 2rem;
+                word-break: keep-all;
             }
 
             .hero-info {
@@ -423,6 +447,9 @@
 
             .section-title {
                 font-size: 2rem;
+                /* Fallback */
+                font-size: clamp(1.75rem, 5vw, 2.5rem);
+                word-break: keep-all;
             }
 
             .card {
@@ -446,12 +473,38 @@
             .rank-table th,
             .rank-table td {
                 padding: 0.75rem 0.5rem;
+                white-space: nowrap;
+                /* Prevent wrapping in tight columns */
             }
 
             header {
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
+            }
+
+            /* Tone down blobs on mobile */
+            .blob {
+                opacity: 0.3;
+            }
+
+            .blob-1 {
+                width: 300px;
+                height: 300px;
+                top: -50px;
+                left: -50px;
+            }
+
+            .blob-2 {
+                width: 250px;
+                height: 250px;
+                bottom: -50px;
+                right: -50px;
+            }
+
+            .blob-3 {
+                width: 200px;
+                height: 200px;
             }
         }
     </style>
